@@ -15,7 +15,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
@@ -29,6 +31,17 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "plugins": ["expo-router", "@config-plugins/react-native-quick-actions"]
+    "plugins": [
+      "expo-router",
+      "@config-plugins/react-native-quick-actions"
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "0e7f9525-1eb1-4d14-b04f-9be0369d4251"
+      }
+    }
   }
 }
