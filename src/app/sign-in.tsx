@@ -21,7 +21,7 @@ export default function App() {
 
   function onSubmit(data: Fields) {
     signIn(data).then(() => {
-      router.replace('/extrato')
+      router.replace('/')
     })
   }
 

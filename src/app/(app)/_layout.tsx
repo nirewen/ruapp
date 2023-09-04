@@ -1,13 +1,16 @@
 import { Redirect, Tabs, router } from 'expo-router'
 import { useEffect } from 'react'
+import { NativeEventEmitter, useColorScheme } from 'react-native'
+import Shortcuts, { ShortcutItem } from 'react-native-actions-shortcuts'
 
-import { DeviceEventEmitter, useColorScheme } from 'react-native'
 import { Paragraph, Spinner, View, XStack, YStack } from 'tamagui'
 
 import config from '@/../tamagui.config'
 import { BottomNav } from '@/components/bottom-nav'
 import { useSession } from '@/context/SessionContext'
-import QuickActions, { ShortcutItem } from 'react-native-quick-actions'
+
+//@ts-expect-error
+const ShortcutsEmitter = new NativeEventEmitter(Shortcuts)
 
 const EXTRATO_SHORTCUT = 'extrato'
 const CARDAPIO_SHORTCUT = 'cardapio'
@@ -19,66 +22,48 @@ export default function AppLayout() {
   const colorScheme = useColorScheme()
 
   function processShortcut(item: ShortcutItem) {
-    if (item.type === EXTRATO_SHORTCUT) {
-      router.replace('/')
-    }
-
-    if (item.type === CARDAPIO_SHORTCUT) {
-      router.replace('/cardapio')
-    }
-
-    if (item.type === CARTEIRA_SHORTCUT) {
-      router.replace('/carteira')
-    }
-
-    if (item.type === AGENDAMENTOS_SHORTCUT) {
-      router.replace('/agendamentos')
-    }
+    router.replace(item.data.path)
   }
 
   useEffect(() => {
-    QuickActions.setShortcutItems([
+    Shortcuts.setShortcuts([
       {
         type: EXTRATO_SHORTCUT,
         title: 'Extrato',
-        icon: 'DollarSignIcon',
-        userInfo: {
-          url: '/',
+        data: {
+          path: '/',
         },
+        iconName: 'lucide_dollar-sign',
       },
       {
         type: CARDAPIO_SHORTCUT,
         title: 'Cardápio',
-        icon: 'MenuIcon',
-        userInfo: {
-          url: '/',
+        data: {
+          path: '/cardapio',
         },
+        iconName: 'lucide_menu-square',
       },
       {
         type: CARTEIRA_SHORTCUT,
         title: 'Carteira',
-        icon: 'WalletIcon',
-        userInfo: {
-          url: '/',
+        data: {
+          path: '/carteira',
         },
+        iconName: 'lucide_wallet',
       },
       {
         type: AGENDAMENTOS_SHORTCUT,
         title: 'Agendamentos',
-        icon: 'Clock9Icon',
-        userInfo: {
-          url: '/',
+        data: {
+          path: '/agendamentos',
         },
+        iconName: 'lucide_clock-9',
       },
     ])
 
-    QuickActions.popInitialAction().then(processShortcut).catch(console.error)
-    DeviceEventEmitter.addListener('quickActionShortcut', processShortcut)
+    ShortcutsEmitter.addListener('onShortcutItemPressed', processShortcut)
 
-    return () => {
-      QuickActions.clearShortcutItems()
-      DeviceEventEmitter.removeAllListeners('quickActionShortcut')
-    }
+    return () => ShortcutsEmitter.removeAllListeners('onShortcutItemPressed')
   }, [])
 
   // You can keep the splash screen open, or render a loading screen like we do here.
