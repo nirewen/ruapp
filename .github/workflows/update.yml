@@ -1,6 +1,4 @@
-name: update
-on: push
-
+name: Update with EAS
 jobs:
   update:
     name: EAS Update
