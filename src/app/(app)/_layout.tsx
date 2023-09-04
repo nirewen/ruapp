@@ -33,7 +33,7 @@ export default function AppLayout() {
         data: {
           path: '/',
         },
-        iconName: 'lucide_dollar-sign',
+        iconName: 'extrato',
       },
       {
         type: CARDAPIO_SHORTCUT,
@@ -41,7 +41,7 @@ export default function AppLayout() {
         data: {
           path: '/cardapio',
         },
-        iconName: 'lucide_menu-square',
+        iconName: 'cardapio',
       },
       {
         type: CARTEIRA_SHORTCUT,
@@ -49,7 +49,7 @@ export default function AppLayout() {
         data: {
           path: '/carteira',
         },
-        iconName: 'lucide_wallet',
+        iconName: 'carteira',
       },
       {
         type: AGENDAMENTOS_SHORTCUT,
@@ -57,7 +57,7 @@ export default function AppLayout() {
         data: {
           path: '/agendamentos',
         },
-        iconName: 'lucide_clock-9',
+        iconName: 'agendamentos',
       },
     ])
 
