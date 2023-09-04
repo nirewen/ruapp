@@ -14,8 +14,12 @@
       }
     },
     "production": {
-      "env": {
-        "EXPO_PUBLIC_API_URL": "https://portal.ufsm.br/mobile/webservice"
+      "android": {
+        "buildType": "apk",
+        "releaseChannel": "production",
+        "env": {
+          "EXPO_PUBLIC_API_URL": "https://portal.ufsm.br/mobile/webservice"
+        }
       }
     }
   }
