@@ -9,12 +9,28 @@ export function BottomNav({ state }: { state: { index: number } }) {
 
   return (
     <YStack display={isFullScreen ? 'none' : 'flex'}>
-      <XStack ai='center' jc='space-evenly' py='$4' m='$2' bg='$gray5' borderRadius='$4'>
+      <XStack ai='center' jc='space-around' py='$2.5' m='$2' bg='$gray5' borderRadius='$4'>
         <Link href='/'>
-          <DollarSign />
+          <View
+            jc='center'
+            ai='center'
+            p='$3'
+            borderRadius='$2'
+            bg={state.index === 3 ? '$gray7' : '$colorTransparent'}
+          >
+            <DollarSign />
+          </View>
         </Link>
         <Link href='/cardapio'>
-          <MenuSquare />
+          <View
+            jc='center'
+            ai='center'
+            p='$3'
+            borderRadius='$2'
+            bg={state.index === 1 ? '$gray7' : '$colorTransparent'}
+          >
+            <MenuSquare />
+          </View>
         </Link>
         <View
           bg='$blue7'
@@ -31,10 +47,26 @@ export function BottomNav({ state }: { state: { index: number } }) {
           </Link>
         </View>
         <Link href='/agendamentos'>
-          <Clock9 />
+          <View
+            jc='center'
+            ai='center'
+            p='$3'
+            borderRadius='$2'
+            bg={state.index === 4 ? '$gray7' : '$colorTransparent'}
+          >
+            <Clock9 />
+          </View>
         </Link>
         <Link href='/perfil'>
-          <User2 />
+          <View
+            jc='center'
+            ai='center'
+            p='$3'
+            borderRadius='$2'
+            bg={state.index === 0 ? '$gray7' : '$colorTransparent'}
+          >
+            <User2 />
+          </View>
         </Link>
       </XStack>
     </YStack>

@@ -26,6 +26,10 @@ export default function AppLayout() {
   }
 
   useEffect(() => {
+    if (!Shortcuts) {
+      return
+    }
+
     Shortcuts.setShortcuts([
       {
         type: EXTRATO_SHORTCUT,
@@ -87,7 +91,14 @@ export default function AppLayout() {
             const HeaderRight = options.headerRight
 
             return (
-              <XStack ai='center' m='$2' backgroundColor='$gray5' px='$4' py='$3' borderRadius='$4'>
+              <XStack
+                ai='center'
+                m='$2'
+                backgroundColor='$gray5'
+                px='$4'
+                py='$3'
+                borderRadius='$4'
+              >
                 {HeaderLeft && <HeaderLeft />}
                 <Paragraph>{options.title ?? 'Carregando...'}</Paragraph>
                 {HeaderRight && (
