@@ -1,8 +1,9 @@
 import { useQuery } from '@tanstack/react-query'
 import { Tabs } from 'expo-router'
 import { RefreshControl } from 'react-native-gesture-handler'
-import { Image, ScrollView, Spinner, Text, View, XStack, YStack } from 'tamagui'
+import { Button, Image, ScrollView, Spinner, Text, View, XStack, YStack } from 'tamagui'
 
+import { useSession } from '@/context/SessionContext'
 import { APIResponse, api } from '@/util/api'
 
 export type Perfil = APIResponse<{
@@ -25,6 +26,7 @@ const formatter = Intl.NumberFormat('pt-BR', {
 })
 
 export default function Page() {
+  const { signOut } = useSession()
   const { data, isLoading, refetch } = useQuery({
     queryKey: ['vinculos'],
     queryFn: () =>
@@ -83,6 +85,11 @@ export default function Page() {
           </XStack>
         </YStack>
       </ScrollView>
+      <View mt='auto' p='$2'>
+        <Button onPress={signOut}>
+          <Text>Sair da conta</Text>
+        </Button>
+      </View>
     </View>
   )
 }
