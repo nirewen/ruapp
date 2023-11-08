@@ -35,12 +35,14 @@ export default function Page() {
     return <Spinner size='large' />
   }
 
-  if (!data) {
+  if (!data || !data.movimentacoes) {
     return null
   }
 
+  const movimentacoes = data.movimentacoes.reverse()
+
   return (
-    <View>
+    <View flex={1}>
       <Tabs.Screen
         options={{
           title: 'Extrato',
@@ -68,7 +70,7 @@ export default function Page() {
           </YStack>
         </YStack>
         <YStack bg='$gray5' p='$3' borderRadius='$4' gap='$4'>
-          {data.movimentacoes.map((movimentacao, i) => (
+          {movimentacoes.map((movimentacao, i) => (
             <XStack jc='space-between' key={i}>
               <YStack>
                 <Text fontWeight='bold'>{dayjs(movimentacao.data).format('DD/MM/YYYY')}</Text>
