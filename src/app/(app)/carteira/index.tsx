@@ -119,8 +119,9 @@ export default function Page() {
             </YStack>
           </XStack>
         </YStack>
-        <View mt='auto' p='$3' bg='white' borderRadius={'$4'}>
+        <View mt='auto' p='$3' bg='#FEFEFE' borderRadius='$4'>
           <Barcode
+            background='#FEFEFE'
             value={data.codBarras}
             maxWidth={Dimensions.get('window').width - 48}
             height={80}
